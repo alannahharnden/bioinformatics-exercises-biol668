@@ -46,9 +46,9 @@ print(out)
 This exercise introduces students to object-oriented programming, out of the context of biological data analysis. Tasks provided explain concepts through video game-like programming.
 
 Files required include:
-- person.py
+- Harnden_person.py
 - make_person.py (instances to test your class on)
-- wizard_class_HW.py
+- Harnden_wizard_class_HW.py
 
 You will begin with person.py file, creating a subclass from the parent class, Person. You can then use make_person.py to test your class, as it includes a couple of examples of instances.
 
