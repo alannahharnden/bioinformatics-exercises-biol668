@@ -1,0 +1,505 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red242\green242\blue242;\red173\green173\blue173;
+\red12\green95\blue24;\red252\green117\blue255;\red243\green243\blue242;\red38\green38\blue38;\red50\green91\blue142;
+\red29\green111\blue63;\red252\green117\blue255;\red243\green243\blue242;\red38\green38\blue38;}
+{\*\expandedcolortbl;;\cssrgb\c20000\c20000\c20000;\cssrgb\c96078\c96078\c96078;\cssrgb\c73333\c73333\c73333;
+\cssrgb\c0\c43922\c12549;\cssrgb\c100000\c56882\c100000;\cssrgb\c96185\c96184\c96064;\cssrgb\c20022\c20022\c19997;\cssrgb\c25098\c43922\c62745;
+\cssrgb\c12549\c50196\c31373;\cssrgb\c100000\c56882\c100000;\cssrgb\c96185\c96184\c96064;\cssrgb\c20022\c20022\c19997;}
+\margl1440\margr1440\vieww13700\viewh14860\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 QIIME2 Tutorial by Alannah Harnden\
+4/11/2025\
+\
+mkdir\cf4 \strokec4  \cf2 \strokec2 qiime2-moving-pictures-tutorial\
+\pard\pardeftab720\partightenfactor0
+\cf5 \strokec5 cd\cf4 \strokec4  \cf2 \strokec2 qiime2-moving-pictures-tutorial\
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 # We begin the tutorial by creating a new directory and changing into it.\cf2 \cb3 \strokec2 \
+\
+mkdir\cf4 \strokec4  \cf2 \strokec2 emp-single-end-sequences\
+\
+\cf6 \cb7 \strokec8 # We create another directory within it, for the subset of sequence data we\'92ll be utilizing for this tutorial.\cf2 \cb3 \strokec2 \
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 tools\cf4 \strokec4  \cf2 \strokec2 import\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \strokec4   \cf2 \strokec2 --type\cf4 \strokec4  \cf2 \strokec2 EMPSingleEndSequences\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --input-path\cf4 \strokec4  \cf2 \strokec2 emp-single-end-sequences\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --output-path\cf4 \strokec4  \cf2 \strokec2 emp-single-end-sequences.qza\
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 # We import different tools to assist with the analysis of our multiplex data. \cf2 \cb3 \strokec2 \
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 tools\cf4 \strokec4  \cf2 \strokec2 peek\cf4 \strokec4  \cf2 \strokec2 emp-single-end-sequences.qza\
+\
+\cf6 \cb7 \strokec8 # Now, we check that these imports work properly with this line of code.\cf2 \cb3 \strokec2 \
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 demux\cf4 \strokec4  \cf2 \strokec2 emp-single\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \strokec4   \cf2 \strokec2 --i-seqs\cf4 \strokec4  \cf2 \strokec2 emp-single-end-sequences.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-barcodes-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-barcodes-column\cf4 \strokec4  \cf2 \strokec2 barcode-sequence\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-per-sample-sequences\cf4 \strokec4  \cf2 \strokec2 demux.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-error-correction-details\cf4 \strokec4  \cf2 \strokec2 demux-details.qza\
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 # Here, we want to demultiplex our sequence data. We begin with our single-end read sequences and their barcodes. The output will be our demultiplexed sequences.\cf2 \cb3 \strokec2 \
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 demux\cf4 \strokec4  \cf2 \strokec2 summarize\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \strokec4   \cf2 \strokec2 --i-data\cf4 \strokec4  \cf2 \strokec2 demux.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 demux.qzv\
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 # Now, we can create a summary for the demultiplexing results, which includes details on the distribution and number of sequences per sample that have been identified with the sample-specific barcodes. With the final line, we can visualize that with a graph.\
+\
+\
+# Next, we wish to perform some denoising with methods including dada2 and deblur, with the former being longer.\cf2 \cb3 \strokec2 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 qiime\cf4 \strokec4  \cf2 \strokec2 dada2\cf4 \strokec4  \cf2 \strokec2 denoise-single\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-demultiplexed-seqs\cf4 \strokec4  \cf2 \strokec2 demux.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-trim-left\cf4 \strokec4  \cf10 \cb3 \strokec10 0\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-trunc-len\cf4 \strokec4  \cf10 \cb3 \strokec10 120\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-representative-sequences\cf4 \strokec4  \cf2 \strokec2 rep-seqs-dada2.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-table\cf4 \strokec4  \cf2 \strokec2 table-dada2.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-denoising-stats\cf4 \strokec4  \cf2 \strokec2 stats-dada2.qza\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # Beginning with dada2, we QC the sequence data by filtering any phiX reads and chimeric sequences. \
+# The low quality will be trimmed off, from both the left and the right of the sequences, where we will truncate at about 120 bases.\cf2 \cb3 \strokec2 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 qiime\cf4 \strokec4  \cf2 \strokec2 metadata\cf4 \strokec4  \cf2 \strokec2 tabulate\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-input-file\cf4 \strokec4  \cf2 \strokec2 stats-dada2.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 stats-dada2.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # We will visualize after these generated artifacts with a table of this metadata statistics.\
+\
+# Another denoising method we can use is, aforementioned, deblur. This can remove erroneous sequence reads with actual sequences from error profiles, which provides high quality SV data. \cf2 \cb3 \strokec2 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 qiime\cf4 \strokec4  \cf2 \strokec2 quality-filter\cf4 \strokec4  \cf2 \strokec2 q-score\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4  \cf2 \strokec2 --i-demux\cf4 \strokec4  \cf2 \strokec2 demux.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4  \cf2 \strokec2 --o-filtered-sequences\cf4 \strokec4  \cf2 \strokec2 demux-filtered.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4  \cf2 \strokec2 --o-filter-stats\cf4 \strokec4  \cf2 \strokec2 demux-filter-stats.qza\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # For the first step of using devalue, the quality filtering process generates scores, and a table of these stats. \
+\cf2 \cb3 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf2 qiime\cf4 \strokec4  \cf2 \strokec2 deblur\cf4 \strokec4  \cf2 \strokec2 denoise-16S\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-demultiplexed-seqs\cf4 \strokec4  \cf2 \strokec2 demux-filtered.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-trim-length\cf4 \strokec4  \cf10 \cb3 \strokec10 120\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-representative-sequences\cf4 \strokec4  \cf2 \strokec2 rep-seqs-deblur.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-table\cf4 \strokec4  \cf2 \strokec2 table-deblur.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-sample-stats\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-stats\cf4 \strokec4  \cf2 \strokec2 deblur-stats.qza\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # Now, the deblur workflow is actually implemented. The sequences are first truncated at base 120, as used before, to maintain same length of the reads and avoid study-specific bias. \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 metadata\cf4 \strokec4  \cf2 \strokec2 tabulate\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-input-file\cf4 \strokec4  \cf2 \strokec2 demux-filter-stats.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 demux-filter-stats.qzv\
+qiime\cf4 \strokec4  \cf2 \strokec2 deblur\cf4 \strokec4  \cf2 \strokec2 visualize-stats\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-deblur-stats\cf4 \strokec4  \cf2 \strokec2 deblur-stats.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 deblur-stats.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # From here, we will create artifacts from that QC,  creating summary statistics with that tabulation and the visualize-stats command.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 mv\cf4 \strokec4  \cf2 \strokec2 rep-seqs-deblur.qza\cf4 \strokec4  \cf2 \strokec2 rep-seqs.qza\
+mv\cf4 \strokec4  \cf2 \strokec2 table-deblur.qza\cf4 \strokec4  \cf2 \strokec2 table.qza\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # This is an option to instead use feature table, for generating a table with deblur rather than dada2.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 feature-table\cf4 \strokec4  \cf2 \strokec2 summarize\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 table.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 table.qzv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-sample-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\
+qiime\cf4 \strokec4  \cf2 \strokec2 feature-table\cf4 \strokec4  \cf2 \strokec2 tabulate-seqs\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-data\cf4 \strokec4  \cf2 \strokec2 rep-seqs.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 rep-seqs.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # Following the QC, here we explore the now demultiplexed and QC checked data. We do so by creating visual summaries, which includes a collective sample summary about distribution, number of sequences, frequency, and other stats. The second feature-table line, tabulate-seqs, provides hyperlinks for BLASTING each sequence with the NCBI database, facilitating identification of the microbial community members.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 phylogeny\cf4 \strokec4  \cf2 \strokec2 align-to-tree-mafft-fasttree\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-sequences\cf4 \strokec4  \cf2 \strokec2 rep-seqs.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-alignment\cf4 \strokec4  \cf2 \strokec2 aligned-rep-seqs.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-masked-alignment\cf4 \strokec4  \cf2 \strokec2 masked-aligned-rep-seqs.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-tree\cf4 \strokec4  \cf2 \strokec2 unrooted-tree.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-rooted-tree\cf4 \strokec4  \cf2 \strokec2 rooted-tree.qza\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # The first line gives us the pipeline to create a phylogenetic tree. First, a sequence alignment is made amongst the sequences and generates a feature data, aligned sequence artifact. Noisy alignments are removed from contributing to the phylogenetic tree. FastTree then creates the tree, unrooted, with the final line of code here placing a root at the midpoint of the longest branch in the unrooted product. \
+\
+# Forward, we want to perform more alpha and beta diversity analyses.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 diversity\cf4 \strokec4  \cf2 \strokec2 core-metrics-phylogenetic\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-phylogeny\cf4 \strokec4  \cf2 \strokec2 rooted-tree.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 table.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-sampling-depth\cf4 \strokec4  \cf10 \cb3 \strokec10 1103\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --output-dir\cf4 \strokec4  \cf2 \strokec2 core-metrics-results\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # To begin, we rarefy the feature table to a user-defined depth, which computes different alpha and beta diversity metrics and produces principle coordinate analysis (PCoA) plots. We define the depth at 1103, so this is the number of counts of which this step will subsample to. This is a good, high value, which will retain many of our sequence as per our previously generated .qzv dada2 feature table and relevance to our L3S313 sample. This will generate for us both tables and graph visuals of the alpha and beta diversity metrics, not limited to Jaccard Emperor, Bray Curtis, and Unifrac. \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 diversity\cf4 \strokec4  \cf2 \strokec2 alpha-group-significance\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-alpha-diversity\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/faith_pd_vector.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/faith-pd-group-significance.qzv\
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 diversity\cf4 \strokec4  \cf2 \strokec2 alpha-group-significance\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-alpha-diversity\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/evenness_vector.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/evenness-group-significance.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 \
+# After producing those diversity metrics, we explore microbial composition with the provided metadata.  We begin with testing for Faith phylogenetic diversity, for looking at community richness and evenness. The last line of each code segment produces some alpha diversity box plots and Kruskal-Wallis data, including the p-values.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 diversity\cf4 \strokec4  \cf2 \strokec2 beta-group-significance\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-distance-matrix\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/unweighted_unifrac_distance_matrix.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-column\cf4 \strokec4  \cf2 \strokec2 body-site\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/unweighted-unifrac-body-site-significance.qzv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-pairwise\
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 diversity\cf4 \strokec4  \cf2 \strokec2 beta-group-significance\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-distance-matrix\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/unweighted_unifrac_distance_matrix.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-column\cf4 \strokec4  \cf2 \strokec2 subject\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/unweighted-unifrac-subject-group-significance.qzv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-pairwise\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 \
+# Now here, we want to look at sample composition specifically categorical metadata, with PERMANOVA. The first command sets this up, with the following assessing the relevance of distances both intra and interspecific to samples, with p-pairwise doing pairwise tests.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 emperor\cf4 \strokec4  \cf2 \strokec2 plot\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-pcoa\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/unweighted_unifrac_pcoa_results.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-custom-axes\cf4 \strokec4  \cf2 \strokec2 days-since-experiment-start\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/unweighted-unifrac-emperor-days-since-experiment-start.qzv\
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 emperor\cf4 \strokec4  \cf2 \strokec2 plot\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-pcoa\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/bray_curtis_pcoa_results.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-custom-axes\cf4 \strokec4  \cf2 \strokec2 days-since-experiment-start\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 core-metrics-results/bray-curtis-emperor-days-since-experiment-start.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 \
+#Here, we are adding the custom axes parameter to explore the time series data as another layer on the Emperor PCoA plots. We can simply utilize the plots already made for this. Additionally, here Emperor plots are being made for UniFrac and Bray-Curtis, so principle coordinates 1, 2, and days since experiment start will be included axes to determine samples\'92 change over time.\cf2 \cb3 \strokec2 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 qiime\cf4 \strokec4  \cf2 \strokec2 diversity\cf4 \strokec4  \cf2 \strokec2 alpha-rarefaction\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 table.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-phylogeny\cf4 \strokec4  \cf2 \strokec2 rooted-tree.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-max-depth\cf4 \strokec4  \cf10 \cb3 \strokec10 4000\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 alpha-rarefaction.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 #Alpha rarefaction is the new visualizer used here, for looking at alpha diversity as a function of sampling depth, where it generates these metrics at multiple sample depths leading up to the fourth line of code (\'97\'97p-max-depth 4000 \\). 10 rarefied tables are produced for each of these steps,  and will be plotted and grouped with the last line of code, alongside the metadata file, second to last line of code.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 feature-classifier\cf4 \strokec4  \cf2 \strokec2 classify-sklearn\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-classifier\cf4 \strokec4  \cf2 \strokec2 gg-13-8-99-515-806-nb-classifier.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-reads\cf4 \strokec4  \cf2 \strokec2 rep-seqs.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-classification\cf4 \strokec4  \cf2 \strokec2 taxonomy.qza\
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 metadata\cf4 \strokec4  \cf2 \strokec2 tabulate\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-input-file\cf4 \strokec4  \cf2 \strokec2 taxonomy.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 taxonomy.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # Here is where taxonomic sample composition begins. Using the q2-feature-classifier (first line), we assign taxonomy to our sequences specifically in the artifact we created them to be. In the second chunk, we relate it to the sample metadata. From here, we use the final line to visualize a tabular format of samples, taxon, and confidence values, with barcodes showing from which sample they originate.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 taxa\cf4 \strokec4  \cf2 \strokec2 barplot\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 table.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-taxonomy\cf4 \strokec4  \cf2 \strokec2 taxonomy.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 taxa-bar-plots.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 \
+\
+#Then we can visualize those results as interactive bar plots. These commands produce those, differentiating between bacteria, unassigned, and archaea species and onward in the taxonomy. With these plots being interactive, the user is able to toggle the settings of the output, for taxonomic level, color palette, sample sorting. This is very valuable.\
+\cf2 \cb3 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf2 qiime\cf4 \strokec4  \cf2 \strokec2 feature-table\cf4 \strokec4  \cf2 \strokec2 filter-samples\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 table.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-where\cf4 \strokec4  \cf9 \cb3 \strokec9 "[body-site]='gut'"\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-filtered-table\cf4 \strokec4  \cf2 \strokec2 gut-table.qza\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # This is how we can test differential abundance across our sample groups, with the linear regression model ANCOM-BC. Here, we are beginning by creating a table for only the gut microbiome samples. \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 qiime\cf4 \strokec4  \cf2 \strokec2 composition\cf4 \strokec4  \cf2 \strokec2 ancombc\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 gut-table.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-formula\cf4 \strokec4  \cf9 \cb3 \strokec9 'subject'\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-differentials\cf4 \strokec4  \cf2 \strokec2 ancombc-subject.qza\
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 composition\cf4 \strokec4  \cf2 \strokec2 da-barplot\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-data\cf4 \strokec4  \cf2 \strokec2 ancombc-subject.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-significance-threshold\cf4 \strokec4  \cf10 \cb3 \strokec10 0\cf2 \cb3 \strokec2 .001\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 da-barplot-subject.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb7 \strokec8 \
+# \cf11 \cb12 \outl0\strokewidth0 This model also corrects bias, which is extremely helpful. This code, now that we have our filtered table, runs ANCOM-BC on the frequency feature table artifact, specifically in the \'93subject\'94 column, and will compare the differential abundance of features across these two subjects. \cf6 \cb7 \outl0\strokewidth0 \strokec8 \
+\cf2 \cb3 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf2 qiime\cf4 \strokec4  \cf2 \strokec2 taxa\cf4 \strokec4  \cf2 \strokec2 collapse\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 gut-table.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-taxonomy\cf4 \strokec4  \cf2 \strokec2 taxonomy.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-level\cf4 \strokec4  \cf10 \cb3 \strokec10 6\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-collapsed-table\cf4 \strokec4  \cf2 \strokec2 gut-table-l6.qza\
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 composition\cf4 \strokec4  \cf2 \strokec2 ancombc\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-table\cf4 \strokec4  \cf2 \strokec2 gut-table-l6.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --m-metadata-file\cf4 \strokec4  \cf2 \strokec2 sample-metadata.tsv\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-formula\cf4 \strokec4  \cf9 \cb3 \strokec9 'subject'\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-differentials\cf4 \strokec4  \cf2 \strokec2 l6-ancombc-subject.qza\
+\
+qiime\cf4 \strokec4  \cf2 \strokec2 composition\cf4 \strokec4  \cf2 \strokec2 da-barplot\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --i-data\cf4 \strokec4  \cf2 \strokec2 l6-ancombc-subject.qza\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-significance-threshold\cf4 \strokec4  \cf10 \cb3 \strokec10 0\cf2 \cb3 \strokec2 .001\cf4 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --p-level-delimiter\cf4 \strokec4  \cf9 \cb3 \strokec9 ';'\cf4 \cb3 \strokec4  
+\f1\b \cf9 \cb3 \strokec9 \\
+\f0\b0 \cf2 \cb3 \strokec2 \
+\cf4 \strokec4   \cf2 \strokec2 --o-visualization\cf4 \strokec4  \cf2 \strokec2 l6-da-barplot-subject.qzv\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\cf6 \cb7 \strokec8 # Finally, we can specify where we want to perform differential abundance tests, given the varying levels of taxonomy. We use the first chunk of code to collapse the features within our table, and specific the taxonomic level with the preceding line of code (6), then re-run the previous steps. The output is a bar plot of ANCOM-BC differential abidance analysis at taxonomic level 6, comparing both microbiome gut samples.\cf2 \cb3 \strokec2 \
+\
+}
